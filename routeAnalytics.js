@@ -11,8 +11,8 @@ router.get('/summary', async (req, res) => {
   const { start_date, end_date } = req.query;
 
   const { data, error } = await supabase.rpc('get_route_tat_summary', {
-    start_date: start_date || '2000-01-01',
-    end_date: end_date || '2100-01-01',
+    x_start_date: start_date || '2000-01-01',
+    x_end_date: end_date || '2100-01-01',
   });
 
   if (error) {
@@ -36,7 +36,7 @@ router.get('/:routeId/delay-reasons', async (req, res) => {
   }
 
   const { data, error } = await supabase.rpc('get_route_delay_reasons', {
-    p_route_id: routeId,
+    x_route_id: routeId,
   });
 
   if (error) {
@@ -56,7 +56,7 @@ router.get('/vehicles/trend', async (req, res) => {
   const minTrips = req.query.min_trips ? parseInt(req.query.min_trips, 10) : 5;
 
   const { data, error } = await supabase.rpc('get_vehicle_trend', {
-    min_trips: minTrips,
+    x_min_trips: minTrips,
   });
 
   if (error) {
